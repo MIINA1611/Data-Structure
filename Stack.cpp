@@ -132,7 +132,7 @@ int main()
         getline(cin, element);
         x.push(element);
     }
-    x.Revers();
+    x.pop();
     /*  if (x.friStack(y))
     {
         cout << "The Stack x Equal Stack y." << endl;
