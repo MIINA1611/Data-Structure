@@ -8,7 +8,7 @@ class Stack
     int top;
 
 public:
-    Stack(int size)
+    Stack(int size)//constructor
     {
         top = 0;
         MS = size;
