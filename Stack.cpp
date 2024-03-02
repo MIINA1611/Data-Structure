@@ -6,6 +6,7 @@ class Stack
     int MS;
     t *List;
     int top;
+
 public:
     Stack(T size)
     {
@@ -16,6 +17,16 @@ public:
     bool isEmpty()
     {
         return top == 0;
+    }
+    void Inetialize()
+    {
+        for (int i = 0; i < MS; i++)
+        {
+            string element;
+            cout << "Stack[" << i + 1 << "]= ";
+            getline(cin, element);
+            push(element);
+        }
     }
     void push(t value)
     {
@@ -37,9 +48,9 @@ public:
             int x = value.length();
             for (int j = x; j >= 0; j--)
             {
-                cout << value[j]<<" ";
+                cout << value[j];
             }
-            cout << "\n ";
+            cout << " ";
         }
     }
     void pop()
@@ -126,14 +137,14 @@ public:
 int main()
 {
     Stack<int, string> x(5);
-    for (int i = 0; i < 5; i++)
-    {
-        string element;
-        getline(cin, element);
-        x.push(element);
-    }
+    x.Inetialize();
+    x.print();
+    // x.Revers();
+    Stack<int, string> y(5);
+    y.Inetialize();
     x.pop();
-    /*  if (x.friStack(y))
+    x.print();
+    if (x.friStack(y))
     {
         cout << "The Stack x Equal Stack y." << endl;
     }
@@ -141,5 +152,5 @@ int main()
     {
         cout << "The Stack x Not Equal Stack y." << endl;
     }
-    return 0;*/
+    return 0;
 }
