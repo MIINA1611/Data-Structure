@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-template <class T, class t>
+template <class t>
 class Stack
 {
     int MS;
@@ -8,7 +8,7 @@ class Stack
     int top;
 
 public:
-    Stack(T size)
+    Stack(int size)
     {
         top = 0;
         MS = size;
@@ -136,21 +136,21 @@ public:
 };
 int main()
 {
-    Stack<int, string> x(5);
+    Stack<string> x(3);
     x.Inetialize();
     x.print();
-    // x.Revers();
-    Stack<int, string> y(5);
-    y.Inetialize();
-    x.pop();
-    x.print();
-    if (x.friStack(y))
-    {
-        cout << "The Stack x Equal Stack y." << endl;
-    }
-    else
-    {
-        cout << "The Stack x Not Equal Stack y." << endl;
-    }
+    x.Revers();
+    // Stack<string> y(5);
+    // y.Inetialize();
+    // x.pop();
+    // x.print();
+    // if (x.friStack(y))
+    // {
+    //     cout << "The Stack x Equal Stack y." << endl;
+    // }
+    // else
+    // {
+    //     cout << "The Stack x Not Equal Stack y." << endl;
+    // }
     return 0;
 }
