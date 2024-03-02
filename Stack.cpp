@@ -37,9 +37,9 @@ public:
             int x = value.length();
             for (int j = x; j >= 0; j--)
             {
-                cout << value[j];
+                cout << value[j]<<" ";
             }
-            cout << " ";
+            cout << "\n ";
         }
     }
     void pop()
@@ -132,18 +132,8 @@ int main()
         getline(cin, element);
         x.push(element);
     }
-    x.print();
-    // x.Revers();
-    Stack<int, string> y(5);
-    for (int i = 0; i < 5; i++)
-    {
-        string element;
-        getline(cin, element);
-        y.push(element);
-    }
-    x.pop();
-    x.print();
-    if (x.friStack(y))
+    x.Revers();
+    /*  if (x.friStack(y))
     {
         cout << "The Stack x Equal Stack y." << endl;
     }
@@ -151,5 +141,5 @@ int main()
     {
         cout << "The Stack x Not Equal Stack y." << endl;
     }
-    return 0;
+    return 0;*/
 }
