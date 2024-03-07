@@ -1,5 +1,7 @@
 #include <iostream>
+#include <string>
 using namespace std;
+const int max_size = 1000;
 template <class t>
 class Stack
 {
@@ -8,7 +10,13 @@ class Stack
     int top;
 
 public:
-    Stack(int size)//constructor
+    Stack() // constructor
+    {
+        top = 0;
+        MS = max_size;
+        List = new t[MS];
+    }
+    Stack(int size) // constructor
     {
         top = 0;
         MS = size;
@@ -17,16 +25,6 @@ public:
     bool isEmpty()
     {
         return top == 0;
-    }
-    void Inetialize()
-    {
-        for (int i = 0; i < MS; i++)
-        {
-            string element;
-            cout << "Stack[" << i + 1 << "]= ";
-            getline(cin, element);
-            push(element);
-        }
     }
     void push(t value)
     {
@@ -38,19 +36,6 @@ public:
         {
             List[top] = value;
             top++;
-        }
-    }
-    void Revers()
-    {
-        for (int i = top - 1; i >= 0; i--)
-        {
-            string value = List[i];
-            int x = value.length();
-            for (int j = x; j >= 0; j--)
-            {
-                cout << value[j];
-            }
-            cout << " ";
         }
     }
     void pop()
@@ -78,7 +63,7 @@ public:
     }
     int getTop()
     {
-        return List[top];
+        return List[top - 1];
     }
     bool StackisFull()
     {
@@ -134,23 +119,29 @@ public:
         delete[] List;
     }
 };
+void revers(string &str)
+{
+    Stack<char> x;
+
+    for (int i = 0; i < str.length(); i++)
+    {
+        char value;
+        value = str[i];
+        x.push(value);
+    }
+    for (int i = 0; i < str.length(); i++)
+    {
+        str[i] = x.getTop();
+        x.pop();
+    }
+}
 int main()
 {
-    Stack<string> x(3);
-    x.Inetialize();
-    x.print();
-    x.Revers();
-    // Stack<string> y(5);
-    // y.Inetialize();
-    // x.pop();
-    // x.print();
-    // if (x.friStack(y))
-    // {
-    //     cout << "The Stack x Equal Stack y." << endl;
-    // }
-    // else
-    // {
-    //     cout << "The Stack x Not Equal Stack y." << endl;
-    // }
+    string str = "Data Structure Task 1";
+    revers(str);
+    cout << str << endl;
+    string str1 = "MINA1611";
+    revers(str1);
+    cout << str1 << endl;
     return 0;
 }
