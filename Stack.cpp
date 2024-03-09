@@ -1,16 +1,15 @@
 #include <iostream>
-#include <cmath>
 #include <string>
 using namespace std;
 const int max_size = 1000;
 template <class t>
 class Stack
 {
-
-public:
     int MS;
     t *List;
     int top;
+
+public:
     Stack() // constructor
     {
         top = 0;
@@ -97,7 +96,28 @@ public:
     }
     template <class T>
     friend bool friendStack(const Stack<T> &x, const Stack<T> &y); // "operator =="
+    template <class T>
+    friend bool operator==(const Stack<T> &x, const Stack<T> &y);
+    bool operator=(const Stack<t> &y)
+    {
+        if (top != y.top)
+        {
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < top; i++)
+            {
+                if (List[i] != y.List[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 };
+
 template <class T>
 bool friendStack(const Stack<T> &x, const Stack<T> &y)
 {
@@ -117,6 +137,26 @@ bool friendStack(const Stack<T> &x, const Stack<T> &y)
         return true;
     }
 }
+template <class T>
+bool operator==(const Stack<T> &x, const Stack<T> &y)
+{
+    if (x.top != y.top)
+    {
+        return false;
+    }
+    else
+    {
+        for (int i = 0; i < x.top; i++)
+        {
+            if (x.List[i] != y.List[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
 void revers(string &str)
 {
     Stack<char> x;
@@ -140,16 +180,35 @@ int main()
     string str1 = "MINA1611";
     revers(str1);
     cout << str1 << endl;*/
+
     Stack<int> x(4);
     x.push(1);
     x.push(2);
     x.push(3);
     x.push(4);
+
     Stack<int> y(4);
     y.push(1);
-    y.push(1);
+    y.push(2);
     y.push(3);
     y.push(4);
+
+    if (x == y)
+    {
+        cout << "Equal" << endl;
+    }
+    else
+    {
+        cout << "Not Equal" << endl;
+    }
+    if (x.operator=(y))
+    {
+        cout << "Equal" << endl;
+    }
+    else
+    {
+        cout << "Not Equal" << endl;
+    }
     if (friendStack(x, y))
     {
         cout << "Equal" << endl;
@@ -158,5 +217,6 @@ int main()
     {
         cout << "Not Equal" << endl;
     }
+
     return 0;
 }
