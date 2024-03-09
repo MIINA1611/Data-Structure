@@ -1,15 +1,16 @@
 #include <iostream>
+#include <cmath>
 #include <string>
 using namespace std;
 const int max_size = 1000;
 template <class t>
 class Stack
 {
+
+public:
     int MS;
     t *List;
     int top;
-
-public:
     Stack() // constructor
     {
         top = 0;
@@ -76,35 +77,11 @@ public:
             top--;
         }
     }
-    int friStack(const Stack &y)
-    {
-        bool notEq = true;
-        if (top != y.top)
-        {
-            notEq = false;
-        }
-        else
-        {
-            for (int i = 0; i < top; i++)
-            {
-                if (List[i] == y.List[i])
-                {
-                    notEq = true;
-                }
-                else
-                {
-                    notEq = false;
-                    break;
-                }
-            }
-        }
-        return notEq;
-    }
     void copyStack(const Stack &y)
     {
         MS = y.MS;
         top = y.top;
-        List = new string[MS];
+        List = new t[MS];
         for (int i = 0; i < MS; i++)
         {
             List[i] = y.List[i];
@@ -118,11 +95,31 @@ public:
     {
         delete[] List;
     }
+    template <class T>
+    friend bool friendStack(const Stack<T> &x, const Stack<T> &y); // "operator =="
 };
+template <class T>
+bool friendStack(const Stack<T> &x, const Stack<T> &y)
+{
+    if (x.top != y.top)
+    {
+        return false;
+    }
+    else
+    {
+        for (int i = 0; i < x.top; i++)
+        {
+            if (x.List[i] != y.List[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 void revers(string &str)
 {
     Stack<char> x;
-
     for (int i = 0; i < str.length(); i++)
     {
         char value;
@@ -137,11 +134,29 @@ void revers(string &str)
 }
 int main()
 {
-    string str = "Data Structure Task 1";
+    /*string str = "Data Structure";
     revers(str);
     cout << str << endl;
     string str1 = "MINA1611";
     revers(str1);
-    cout << str1 << endl;
+    cout << str1 << endl;*/
+    Stack<int> x(4);
+    x.push(1);
+    x.push(2);
+    x.push(3);
+    x.push(4);
+    Stack<int> y(4);
+    y.push(1);
+    y.push(1);
+    y.push(3);
+    y.push(4);
+    if (friendStack(x, y))
+    {
+        cout << "Equal" << endl;
+    }
+    else
+    {
+        cout << "Not Equal" << endl;
+    }
     return 0;
 }
