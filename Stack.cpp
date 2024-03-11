@@ -156,14 +156,12 @@ bool operator==(const Stack<T> &x, const Stack<T> &y)
         return true;
     }
 }
-
 void revers(string &str)
 {
     Stack<char> x;
     for (int i = 0; i < str.length(); i++)
     {
-        char value;
-        value = str[i];
+        char value = str[i];
         x.push(value);
     }
     for (int i = 0; i < str.length(); i++)
@@ -180,20 +178,16 @@ int main()
     string str1 = "MINA1611";
     revers(str1);
     cout << str1 << endl;*/
-
-    Stack<int> x(4);
-    x.push(1);
-    x.push(2);
-    x.push(3);
-    x.push(4);
-
-    Stack<int> y(4);
+    /*string value = "Mina Ayman";
+    getChar(value);
+    cout << value << " ";*/
+    /*Stack<int> y(4);;
     y.push(1);
     y.push(2);
     y.push(3);
-    y.push(4);
+    y.push(4);*/
 
-    if (x == y)
+    /*if (x == y)
     {
         cout << "Equal" << endl;
     }
@@ -209,14 +203,14 @@ int main()
     {
         cout << "Not Equal" << endl;
     }
-    if (friendStack(x, y))
+    if (friendStack(x,y))
     {
         cout << "Equal" << endl;
     }
     else
     {
         cout << "Not Equal" << endl;
-    }
+    }*/
 
     return 0;
 }
