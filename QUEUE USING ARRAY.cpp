@@ -28,6 +28,7 @@ public:
     bool operator==(const queueADT<Type> &other);
     queueADT<Type> operator+(queueADT<Type> &other);
     void Merge(const queueADT<Type> &first, const queueADT<Type> &second);
+    void ReverseTraverse();
     ~queueADT();
 };
 
@@ -243,6 +244,22 @@ bool queueADT<Type>::operator==(const queueADT<Type> &other)
         j = (j + 1) % other.Max_Size;
     }
     return true;
+}
+template <class Type>
+void queueADT<Type>::ReverseTraverse()
+{
+    if (!isEmpty())
+    {
+        for (int i = rear; i != front; i = (i - 1 + Max_Size) % Max_Size) // 1 2 3 4 5 ->dequeue 2 3 4 5 -->enqueue 2 3 4 5 6
+        {
+            cout << list[i] << " ";
+        }
+        cout << list[front];
+    }
+    else
+    {
+        cout << "Empty queue";
+    }
 }
 template <class Type>
 queueADT<Type>::~queueADT()
