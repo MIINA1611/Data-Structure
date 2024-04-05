@@ -39,7 +39,7 @@ public:
     friend ostream &operator<<(ostream &os, const queueLinkedbase<Type> &obj);
     queueLinkedbase<Type> operator+(const queueLinkedbase<Type> &other) const;
     bool compare(const queueLinkedbase<Type> &second) const;
-    friend bool operator==(const queueLinkedbase<Type> &first, const queueLinkedbase<Type> &second);
+    friend bool operator==(queueLinkedbase<Type> &first,queueLinkedbase<Type> &second);
 };
 template <class Type>
 queueLinkedbase<Type>::queueLinkedbase()
@@ -134,8 +134,8 @@ void queueLinkedbase<Type>::reverse()
 template <class Type>
 void queueLinkedbase<Type>::reversQueue(queueLinkedbase<Type> &other) // REVERSE AND COPY
 {
-    other.reverse();
     copyQueue(other);
+    reverse();
 }
 template <class Type>
 void queueLinkedbase<Type>::Traverse()
@@ -203,7 +203,7 @@ Type queueLinkedbase<Type>::sizeofQueue() const
 template <class Type>
 bool queueLinkedbase<Type>::compare(const queueLinkedbase<Type> &second) const
 {
-    if (CountofQueue() != second.CountofQueue())
+    if (sizeofQueue() != second.sizeofQueue())
         return false;
     Node<Type> *temp1 = front;
     Node<Type> *temp2 = second.front;
@@ -220,11 +220,7 @@ bool queueLinkedbase<Type>::compare(const queueLinkedbase<Type> &second) const
 template <class Type>
 bool operator==(queueLinkedbase<Type> &first, queueLinkedbase<Type> &second)
 {
-    if (first.compare(second))
-    {
-        return true;
-    }
-    return false;
+    return (first.compare(second));
 }
 template <class Type> // MERGE
 queueLinkedbase<Type> queueLinkedbase<Type>::operator+(const queueLinkedbase<Type> &other) const
@@ -257,23 +253,18 @@ queueLinkedbase<Type> queueLinkedbase<Type>::operator+(const queueLinkedbase<Typ
     while (temp1 != NULL || temp2 != NULL || carry != 0)
     {
         Type sum = carry;
-
         if (temp1 != NULL) {
             sum += temp1->data;
             temp1 = temp1->next;
         }
-
         if (temp2 != NULL) {
             sum += temp2->data;
             temp2 = temp2->next;
         }
-
         carry = sum / 10;
         sum %= 10;
-
         result.addQueue(sum); // Add the sum to the result queue
     }
-
     return result; // Return the result queue by value
 }*/
 template <class Type>
